@@ -36,7 +36,7 @@
 
 <script setup>
 import ManageSelectedTargetComponent from "./ManageSelectedTarget.component.vue";
-import SelectProfileComponent from "@/components/SelectProfile.component.vue";
+import SelectProfileComponent from "@/components/SelectProfile.ScieboRDS.component.vue";
 import ManageCrateFilesComponent from "@/components/manage-crate-files/Shell.component.vue";
 import LoadCollectionComponent from "@/components/LoadCollection.component.vue";
 import RenderEntityComponent from "@/components/manage-entities/RenderEntity.component.vue";
