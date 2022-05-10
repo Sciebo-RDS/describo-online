@@ -12,7 +12,8 @@
         </div>
         <!-- add logo attribute to profiles -->
         <div style="display: flex; justify-content: center">
-            <div style="display: flex; justify-content: space-between; width: 400px;"
+            <el-empty v-if="!data.profiles" description="No Repository Profiles Available. Please contact <email>."></el-empty>
+            <div v-else style="display: flex; justify-content: space-between; width: 400px;"
             v-for="profile in data.profiles"
             :key="profile.file"
             :value="profile.file">
