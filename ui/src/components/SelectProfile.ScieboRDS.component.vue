@@ -18,7 +18,7 @@
             :key="profile.file"
             :value="profile.file">
                 <button @click="data.pendingProfile = profile.file" style="outline-color: transparent" >        
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Grumpy_Cat_%2814556024763%29_%28cropped%29.jpg"  :class="!(data.pendingProfile == profile.name) ? 'opacity-30' : ''"  :alt="profile.name" :id="profile.name">
+                    <img :src="profile.logo"  :class="!(data.pendingProfile == profile.name) ? 'opacity-30' : ''"  :alt="profile.name" :id="profile.name">
                     {{ profile.name }}
                 </button>
             </div>
@@ -36,12 +36,6 @@
             </div>
     </div>
 </template>
-
-<style scoped>
-.opaque {
-    opacity: 0.3;
-}
-</style>
 
 <script setup>
 import { restoreSessionProfile, getProfiles, setProfile } from "./session-handlers";
