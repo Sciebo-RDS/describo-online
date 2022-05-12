@@ -44,9 +44,11 @@ export default {
     methods: {
         close() {
             this.$emit("close");
+            this.crateName = '';
         },
         save() {
             this.$emit("save:crate-as-template", { name: this.crateName });
+            this.crateName = '';
         },
     },
 };
