@@ -39,7 +39,7 @@ import ManageSelectedTargetComponent from "./ManageSelectedTarget.component.vue"
 import SelectProfileComponent from "@/components/SelectProfile.ScieboRDS.component.vue";
 import ManageCrateFilesComponent from "@/components/manage-crate-files/Shell.component.vue";
 import LoadCollectionComponent from "@/components/LoadCollection.component.vue";
-import RenderEntityComponent from "@/components/manage-entities/RenderEntity.component.vue";
+import RenderEntityComponent from "@/components/manage-entities/RenderEntity.ScieboRDS.component.vue";
 import EntityListManagerComponent from "@/components/entity-list/Shell.component.vue";
 import TemplateListComponent from "@/components/template-list/TemplateList.component.vue";
 import { restoreSessionTarget } from "./session-handlers";
