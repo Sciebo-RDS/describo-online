@@ -36,7 +36,7 @@
                     </div>
                 </template>
             </el-table-column>
-            <el-table-column label="Actions" width="150">
+            <el-table-column label="Actions" width="100">
                 <template #default="scope">
                     <div class="flex flex-row space-x-2">
                         <div>
