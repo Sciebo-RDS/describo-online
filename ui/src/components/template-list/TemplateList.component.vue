@@ -1,5 +1,4 @@
 <template>
-    <el-card>
         <div class="flex flex-col space-y-4">
             <div class="flex flex-col">
                 <div class="flex flex-row space-x-2">
@@ -57,7 +56,6 @@
                 </el-table-column>
             </el-table>
         </div>
-    </el-card>
 </template>
 
 <script setup>
