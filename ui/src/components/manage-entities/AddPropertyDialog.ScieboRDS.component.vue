@@ -1,5 +1,5 @@
 <template>
-    <div v-if="visible">
+    <div v-if="visible" @keydown.esc="close">
     <div class="flex flex-grow w-full">
         <div v-if="!selectedProperty" class="flex flex-col m-2 w-full">
             <div>

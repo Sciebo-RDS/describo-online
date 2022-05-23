@@ -6,6 +6,7 @@
                     @click="add(type)"
                     type="success"
                     class="shadow-md"
+                    @keydown.esc="close"
                 >
                     <i class="fas fa-plus"></i>&nbsp;{{ type }}
                 </el-button>
@@ -30,7 +31,7 @@
             </el-select>
         </div>
         <div class="my-1">
-            <el-button v-if="this.selectedType" @click="close" type="danger" class="shadow-md" plain>
+            <el-button v-if="this.selectedType && this.addType" @click="close" type="danger" class="shadow-md" plain>
                 <i class="fas fa-times"></i>
             </el-button>
         </div>
@@ -45,6 +46,10 @@ export default {
             type: [String, Array],
             required: true,
         },
+        addType: {
+            type: Boolean,
+            required:false,
+        }
     },
     data() {
         return {

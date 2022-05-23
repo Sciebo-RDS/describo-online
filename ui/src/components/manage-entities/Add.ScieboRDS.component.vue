@@ -6,11 +6,12 @@
                 :types="definition.type"
                 @add="add"
                 @close="close"
+                :addType="!!(addType)"
             />
         </div>
 
         <div v-if="addType" class="flex flex-row mt-1" :class="{ '': !embedded }">
-            <div v-if="addSimpleType" class="w-full">
+            <div v-if="addSimpleType" class="w-full" @keydown.esc="close">
                 <text-component
                     v-if="addType === 'Text'"
                     :property="property"

@@ -10,6 +10,7 @@
                     v-model="crateName"
                     size="small"
                     placeholder="Provide a name for the crate template"
+                    @keydown.enter="save"
                 />
             </div>
             <div>

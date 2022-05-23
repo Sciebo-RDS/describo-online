@@ -9,6 +9,7 @@
             @create-and-link:entity="createAndLinkEntity"
             @link:entity="linkEntity"
             @add:template="addTemplateAndLinkEntity"
+            @keydown.esc="addPropertyDialogVisible = false"
         />
         <save-crate-as-template-dialog
             class="border-2 border-indigo-200 pl-6 pb-4 m-2 rounded"
@@ -16,6 +17,7 @@
             :entity="entity"
             @close="toggleSaveCrateDialog"
             @save:crate-as-template="saveCrateAsTemplate"
+            @keydown.esc="toggleSaveCrateDialog"
         />
         <div class="flex flex-row space-x-2 mb-4 p-2">
             <!-- navbar : controls -->
@@ -202,7 +204,7 @@ export default {
         resolveFilePath(id) {
             let filePath = `${this.$store.state.target.folder.path}/${id}`;
             return filePath;
-        },
+        }
     },
 };
 </script>

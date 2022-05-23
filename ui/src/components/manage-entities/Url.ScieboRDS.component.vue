@@ -7,6 +7,7 @@
                 v-model="internalValue"
                 resize="vertical"
                 :rows="5"
+                @keydown.enter="save"
             ></el-input>
         </div>
         <el-button @click="save" type="success" plain>

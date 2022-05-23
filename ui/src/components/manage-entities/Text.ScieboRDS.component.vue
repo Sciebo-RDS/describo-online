@@ -8,6 +8,7 @@
             resize="vertical"
             :rows="5"
             :placeholder="placeholder"
+            @keydown.enter="save"
         ></el-input>
         <div v-if="!autoSave">
             <el-button @click="save" type="success" size="small">
