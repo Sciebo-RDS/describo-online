@@ -33,7 +33,7 @@
                     Back To Root
                 </el-button>
             </div>
-            <div v-if="definition.classDefinitionType !== 'override'">
+            <div v-if="definition.classDefinitionType !== 'override' && !(addPropertyDialogVisible || saveCrateAsTemplateDialogVisible)">
                 <el-button @click="toggleAddPropertyDialog" class="shadow-md" size="small" type="primary">
                     <div class="mr-1">
                         <i class="fas fa-code"></i>
@@ -43,12 +43,11 @@
             </div>
             <div class="flex flex-grow"></div>
             <div class="flex flex-row space-x-1">
-                <div>
+                <div v-if="isRootDataset && !(addPropertyDialogVisible || saveCrateAsTemplateDialogVisible)">
                     <el-button
                         @click="toggleSaveCrateDialog"
                         type="info"
                         size="small"
-                        v-if="isRootDataset && !saveCrateAsTemplateDialogVisible"
                         class="shadow-md"
                         plain
                     >
@@ -63,7 +62,7 @@
                         </div>
                     </el-button>
                 </div>
-                <div>
+                <div v-if="!addPropertyDialogVisible">
                     <el-button
                         @click="saveEntityAsTemplate"
                         type="info"
@@ -83,7 +82,7 @@
                         </div>
                     </el-button>
                 </div>
-                <div>
+                <div v-if="!addPropertyDialogVisible">
                     <el-button
                         @click="deleteEntity"
                         type="danger"
