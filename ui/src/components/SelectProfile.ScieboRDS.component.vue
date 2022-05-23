@@ -1,25 +1,25 @@
 <template>
     <div v-if="!profile.file" class="bg-white"> 
-        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; padding-bottom: 50px;">
-            <div class="my-4 text-gray-700" style="font-weight: bold; padding: 5px;">
+        <div class="flex justify-center pb-5  p-5">
+            <div class="my-2 mx-2 text-gray-700 font-bold">
                 Choose an open access repository to publish your research data   
             </div>
             <el-tooltip content="Explanation for 'choose repository'" placement="top">
-                    <el-button size="mini" type="primary" circle plain> 
+                    <el-button size="mini" type="primary"  circle plain> 
                         <i class="fas fa-question fa-fw"></i>
                     </el-button>
             </el-tooltip>
         </div>
         <!-- add logo attribute to profiles -->
-        <div style="display: flex; justify-content: center">
+        <div class="flex justify-center">
             <el-empty v-if="!data.profiles" description="No Repository Profiles Available. Please contact <email>."></el-empty>
-            <div v-else style="display: flex; justify-content: space-between; width: 400px;"
+            <div v-else style="width: 400px;"
             v-for="profile in data.profiles"
             :key="profile.file"
-            :value="profile.file">
-                <button @click="data.pendingProfile = profile.file" style="outline-color: transparent" >        
-                    <img :src="profile.logo"  :class="!(data.pendingProfile == profile.name) ? 'opacity-30' : ''"  :alt="profile.name" :id="profile.name">
-                    {{ profile.name }}
+            :value="profile.file"
+            class="flex justify-between">
+                <button @click="data.pendingProfile = profile.file">        
+                    <el-image :src="profile.logo" :class="!(data.pendingProfile == profile.name) ? 'opacity-30' : ''" style="width:150px; height: 100px" fit="contain" :alt="profile.name" :id="profile.name" />
                 </button>
             </div>
         </div>
