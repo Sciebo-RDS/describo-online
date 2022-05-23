@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ 'bg-green-200 pl-0.5 rounded': property.value }">
+    <div :class="{ 'bg-green-200 pl-0.5 rounded w-full': property.value }">
         <div v-if="property.value" class="w-full">
             <date-component
                 :property="property.name"
@@ -27,7 +27,6 @@
             />
             <text-component
                 v-if="isText(property.value) && !isValue() && !isSelect()"
-                :style="inputElementWidth"
                 :type="definition.type[0].toLowerCase()"
                 :property="property.name"
                 :value.sync="property.value"
@@ -37,7 +36,6 @@
             <value-component :definition="definition" v-if="isValue()" />
             <select-component
                 v-if="isSelect()"
-                :style="inputElementWidth"
                 :property="property.name"
                 :value.sync="property.value"
                 :definition="definition"
@@ -93,9 +91,6 @@ export default {
         };
     },
     computed: {
-        inputElementWidth() {
-            return `width: 500px;`;
-        },
     },
     methods: {
         async savePropertyValue(data) {

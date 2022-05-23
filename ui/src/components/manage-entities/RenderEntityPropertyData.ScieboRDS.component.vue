@@ -33,7 +33,11 @@
                 "
             />
             <div class="flex flex-row flex-wrap">
-                <div v-for="instance of props.values" :key="instance.id" class="flex flex-row m-1">
+                <div
+                v-for="instance of props.values"
+                :key="instance.id" class="flex flex-row m-1"
+                :class="{'flex flex-row w-full m-1' : instance.value}"
+                >
                     <render-entity-property-instance-component
                         :property="instance"
                         :definition="props.definition"
