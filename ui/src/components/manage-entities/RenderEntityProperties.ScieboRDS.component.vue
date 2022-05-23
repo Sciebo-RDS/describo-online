@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col space-y-2 divide-y divide-slate-500">
+    <div class="flex flex-col space-y-2 divide-y divide-slate-300">
         <div
             v-for="(values, name) of properties"
             :key="generateKey('forward', name)"

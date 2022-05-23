@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-col bg-yellow-200 p-1 cursor-pointer border border-solid border-slate-500"
+        class="flex flex-col bg-yellow-200 p-1 cursor-pointer border border-solid border-slate-300"
         @click="loadEntity"
     >
         <div class="text-sm">

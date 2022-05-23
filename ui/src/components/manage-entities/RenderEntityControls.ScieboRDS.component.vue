@@ -1,7 +1,7 @@
 <template>
     <div>
         <add-property-dialog
-            class="p-2 m-2 border-t border-slate-500"
+            class="p-2 m-2 border-t border-slate-300"
             :visible="addPropertyDialogVisible"
             :inputs="inputsWithNameFilteredOut()"
             @close="addPropertyDialogVisible = false"

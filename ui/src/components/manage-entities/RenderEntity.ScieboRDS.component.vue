@@ -39,7 +39,7 @@
 
                 <!-- render entity name / label -->
                 <render-entity-name-component
-                    class="mb-1 pb-4 border-b border-slate-500"
+                    class="mb-1 pb-4 border-b border-slate-300"
                     :entity="entity"
                     :input-definitions="definition.inputs"
                     :data-service="dataService"
