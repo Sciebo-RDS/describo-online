@@ -3,12 +3,7 @@
         <div class="flex flex-col w-full">
             <div class="flex flex-row" v-if="props.enableFileSelector">
                 <div class="w-3/5 flex-grow px-2">
-                    <div v-if="props.mode === 'openFile'">
-                        <el-checkbox v-model="selectAllChildren">
-                            Select all children when adding folders
-                        </el-checkbox>
-                    </div>
-                    <div class="overflow-scroll">
+                    <div class="overflow-auto">
                         <el-tree
                             v-loading="state.loading"
                             ref="tree"
@@ -18,27 +13,12 @@
                             :load="loadNode"
                             :lazy="true"
                             :show-checkbox="enableFileSelector"
-                            :check-strictly="!selectAllChildren"
                             :default-checked-keys="checkedNodes"
                             :default-expanded-keys="defaultExpandedKeys"
                             @check="handleNodeSelection"
+                            :render-content="renderContent"
                         ></el-tree>
                     </div>
-                </div>
-                <div class="w-2/5 flex flex-col space-y-2">
-                    <information-component type="warning" v-if="props.mode === 'openFile'">
-                        You must expand each subfolder to load the child nodes. If you don't you'll
-                        only get the folders.
-                    </information-component>
-                    <information-component type="info" v-if="props.mode === 'openDirectory'">
-                        Select a folder to work with.
-                    </information-component>
-                    <information-component
-                        type="success"
-                        v-if="props.mode === 'openFile' && state.partsAdded"
-                    >
-                        The crate parts list has been updated.
-                    </information-component>
                 </div>
             </div>
         </div>
@@ -49,7 +29,7 @@
 import { cloneDeep, startsWith, debounce } from "lodash";
 import InformationComponent from "../Information.component.vue";
 import { ElMessage } from "element-plus";
-import { ref, reactive, inject, onMounted } from "vue";
+import { ref, reactive, inject, onMounted, h } from "vue";
 const $http = inject("$http");
 
 const emit = defineEmits(["selected-folder", "selected-nodes"]);
@@ -183,9 +163,58 @@ async function addParts() {
     emit("selected-nodes", nodes);
     state.loading = false;
     state.partsAdded = true;
+    ElMessage.success(`The crate parts list has been updated.`);
     await new Promise((resolve) => setTimeout(resolve, 4000));
     state.partsAdded = false;
 }
+function renderContent(h, { node, data, store }) {
+        return(
+            h('div', {class : 'border-b flex grow max-w-full truncate '},
+                [
+                    h('i', {class: 'fa mx-2 mt-0.5 text-gray-400 ' + (!this.node.data.isDir ? getIcon(node.data.mimeType) : "fa-folder")}),
+                    h('span', {class: 'grow truncate mr-10'}, this.node.data.name),
+                    h('span', {class: 'text-gray-400 min-w-fit'} , (!this.node.data.isDir ? formatBytes(this.node.data.size) : null))
+                ]))
+      }
+
+// this should probably be done differently
+function getIcon(mimeType){
+    switch(true) {
+        case mimeType.startsWith('audio'):
+            return 'fa-file-audio'
+        case mimeType.endsWith('pdf'):
+            return 'fa-file-pdf'
+        case mimeType.endsWith('excel' || 'opendocument.spreadsheet'):
+            return 'fa-file-excel'
+        case mimeType.endsWith('powerpoint' || 'opendocument.presentation'):
+            return 'fa-file-powerpoint'
+        case mimeType.endsWith('word' || 'opendocument.text'):
+            return 'fa-file-word'
+        case mimeType.includes('csv'):
+            return 'fa-file-csv'
+        case mimeType.startsWith('image'):
+            return 'fa-file-image'
+        case mimeType.startsWith('video'):
+            return 'fa-file-video'
+        case mimeType.startsWith('text'):
+            return 'fa-file-text'
+        default:
+            return 'fa-file'
+    }
+}
+
+function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return '0 Bytes';
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
 </script>
 
 <style>
