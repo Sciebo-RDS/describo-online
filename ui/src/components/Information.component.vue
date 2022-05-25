@@ -1,14 +1,14 @@
 <template>
     <div
-        class="flex flex-row text-gray-800 px-2 py-1 rounded text-sm"
+        class="flex flex-row text-gray-800 px-2 py-1 rounded text-sm border-2"
         :class="{
             'justify-left': props.align === 'left',
             'justify-center': props.align === 'center',
             'justify-right': props.align === 'right',
-            'bg-blue-200': props.type === 'info',
-            'bg-green-200': props.type === 'success',
-            'bg-yellow-200': props.type === 'warning',
-            'bg-red-200': props.type === 'danger',
+            'bg-blue-50 border-blue-200': props.type === 'info',
+            'bg-green-50 border-green-200': props.type === 'success',
+            'bg-yellow-50 border-yellow-200': props.type === 'warning',
+            'bg-red-50 border-red-200': props.type === 'danger',
         }"
     >
         <div class="text-blue-600 text-xl" v-show="props.type === 'info'">
@@ -21,7 +21,7 @@
             <i class="fas fa-exclamation-triangle"></i>
         </div>
         <div class="text-red-600 text-xl" v-show="props.type === 'danger'">
-            <i class="fas fa-radiation-alt"></i>
+            <i class="fas fa-skull-crossbones"></i>
         </div>
         <div class="ml-2 pt-1">
             <slot></slot>
