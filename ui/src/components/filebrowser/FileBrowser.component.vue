@@ -13,6 +13,7 @@
                             :load="loadNode"
                             :lazy="true"
                             :show-checkbox="enableFileSelector"
+                            :check-strictly="true"
                             :default-checked-keys="checkedNodes"
                             :default-expanded-keys="defaultExpandedKeys"
                             @check="handleNodeSelection"
