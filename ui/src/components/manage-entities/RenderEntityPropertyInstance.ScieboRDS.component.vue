@@ -1,6 +1,6 @@
 <template>
-    <div :class="{ 'bg-green-200 pl-0.5 rounded w-full': property.value }">
-        <div v-if="property.value" class="w-full">
+    <div :class="{'w-full' : property.value && !isDateTime(property.value) && !isTime(property.value) && !isDate(property.value)}">
+        <div v-if="property.value" class="w-full bg-green-200 pl-0.5 rounded">
             <date-component
                 :property="property.name"
                 :value.sync="property.value"
